@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/style.css" />
+    <title>Questa</title>
+  </head>
+  <body>
+    <%- include('./partials/header') %>
+    <div class="hero">
+      <div class="home-page-container">
+        <% discussions.forEach(discussion=>{ %>
+        <div class="discussion-card">
+          <h1 class="title"><%= discussion.title %></h1>
+          <h4 class="owner">-By <%= discussion.owner %></h4>
+          <h3 class="date"><%= discussion.createdAt.toLocaleDateString() %></h3>
+          <p class="description">
+            <% if(discussion.description.length >=150){ %>
+            <%=discussion.description.substr(0,150) + "...."%> <% }else{ %> <%=
+            discussion.description %> <% } %>
+          </p>
+
+          <div class="discussion-controls">
+            <a href="/discussion/<%= discussion._id %>" class="btn btn-positive"
+              >Read more</a
+            >
+            <a
+              href="/discussion/edit/<%= discussion._id %>"
+              class="btn btn-normal"
+              >Update</a
+            >
+            <!-- <form
+              action="/discussion/%= discussion._id %>?_method=DELETE"
+              method="post"
+            >
+              <button type="submit" class="btn btn-danger">Delete</button>
+            </form> -->
+            <!-- <a href="/" class="btn btn-success">Add suggestion</a> -->
+            <a
+              href="/discussion/delete/<%= discussion._id %>"
+              class="btn btn-danger"
+              >Delete</a
+            >
+          </div>
+        </div>
+        <% }) %>
+      </div>
+    </div>
+  </body>
+</html>

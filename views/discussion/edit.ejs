@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="/css/style.css" />
+    <title>Questa</title>
+  </head>
+  <body>
+    <%- include('../partials/header') %>
+    <section class="hero">
+      <form
+        class="form"
+        action="/discussion/<%= discussion.id %>?_method=PATCH"
+        method="post"
+      >
+        <h1 class="heading">Edit</h1>
+        <p class="error-message"><%= errorMessage %></p>
+        <div class="label-input-container">
+          <label for="title">Title</label><br />
+          <input
+            required
+            type="text"
+            class="title"
+            id="title"
+            name="title"
+            value="<%= discussion.title %>"
+          />
+        </div>
+        <div class="label-input-container">
+          <label for="description">Description</label><br />
+          <textarea required name="description" id="description">
+<%= discussion.description %></textarea
+          >
+        </div>
+        <div class="label-input-container">
+          <label for="password">Password</label><br />
+          <input
+            required
+            type="password"
+            class="password"
+            id="password"
+            name="password"
+          />
+        </div>
+
+        <div class="form-controls">
+          <a href="/" class="btn btn-danger">Cancle</a>
+          <button type="submit" class="btn btn-positive">Update</button>
+        </div>
+      </form>
+    </section>
+  </body>
+</html>
